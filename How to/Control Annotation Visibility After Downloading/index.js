@@ -6,7 +6,6 @@ var pdfviewer = new ej.pdfviewer.PdfViewer({
   ej.pdfviewer.PdfViewer.Inject(ej.pdfviewer.TextSelection, ej.pdfviewer.TextSearch, ej.pdfviewer.Print, ej.pdfviewer.Navigation, ej.pdfviewer.Toolbar,
     ej.pdfviewer.Magnification, ej.pdfviewer.Annotation, ej.pdfviewer.FormDesigner, ej.pdfviewer.FormFields, ej.pdfviewer.PageOrganizer);
     pdfviewer.appendTo('#PdfViewer');
-    //viewer.load(viewer.documentPath, null);
     pdfviewer.documentLoad= function(){
             pdfviewer.annotation.addAnnotation("Highlight", {
                 bounds: [{x: 97, y: 610, width: 350, height: 14}], 
