@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+        <link href="resources/styles/material.min.css" rel="stylesheet">    
+        <script src="resources/Scripts/ej2.min.js" type="text/javascript"></script>
+        </head>
+    <body>
+        <h2>Syncfusion JavaScript (ES5) PDF Viewer Control</h2>
+        <div id="container">
+            <div id="PdfViewer" style="height:580px;width:100%;"></div>
+       </div>
+       <script>                
+            //Initialize PDF Viewer component
+            var pdfviewer = new ej.pdfviewer.PdfViewer({
+                 documentPath:window.location.origin +'/resources/pdfsuccinctly.pdf',
+                 resourceUrl:window.location.origin +'/resources/ej2-pdfviewer-lib'
+            });
+            ej.pdfviewer.PdfViewer.Inject(ej.pdfviewer.TextSelection, ej.pdfviewer.TextSearch, ej.pdfviewer.Print, ej.pdfviewer.Navigation, ej.pdfviewer.Toolbar,ej.pdfviewer.Magnification, ej.pdfviewer.Annotation, ej.pdfviewer.FormDesigner, ej.pdfviewer.FormFields, ej.pdfviewer.PageOrganizer);
+            
+            //PDF Viewer control rendering starts
+            pdfviewer.appendTo('#PdfViewer');
+       </script>       
+      <script>
+         var ele = document.getElementById('container');
+         if(ele) {
+             ele.style.visibility = "visible";
+         }   
+     </script>
+    </body>
+</html>
