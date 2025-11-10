@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Visible Signature - Simple Sample</title>
+
+  <!-- Bootstrap (for row/col grid classes used in your markup) -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+    crossorigin="anonymous"
+  />
+  <!-- CSS -->
+<!-- <link rel="stylesheet" href="https://cdn.syncfusion.com/ej2/27.2.2/material.css" /> -->
+<!-- <link rel="stylesheet" href="https://cdn.syncfusion.com/ej2/27.2.2/ej2-pdfviewer/styles/material.css" /> -->
+<link rel="stylesheet" href="https://cdn.syncfusion.com/ej2/27.2.2/tailwind.css" />
+<link rel="stylesheet" href="https://cdn.syncfusion.com/ej2/27.2.2/ej2-pdfviewer/styles/tailwind.css" />
+<!-- JS (order matters) -->
+<script src="https://cdn.syncfusion.com/ej2/27.2.2/dist/ej2.min.js"></script>
+<script src="https://cdn.syncfusion.com/ej2/27.2.2/dist/ej2-pdfviewer.min.js"></script>
+
+  <style>
+    /* Your styles (unchanged) */
+    #visibleSign_topToolbar {
+      top: 0px;
+      z-index: 1001;
+    }
+    .e-pv-visible-sign-input-item {
+      margin-top: 4px;
+    }
+    .e-pv-visible-sign-group {
+      margin-bottom: 10px;
+      margin-top: 10px;
+    }
+    .e-pv-visible-sign-tab {
+      flex: 1 1 auto;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 12px 12px 16px;
+    }
+    .e-view.e-bigger .e-pv-visible-sign-tab {
+      padding: 12px 16px 16px;
+    }
+    .e-pv-visible-sign-tab hr {
+      border-color: #D7D7D7;
+      margin-top: 16px;
+      margin-bottom: 16px;
+    }
+    .e-pv-visible-sign-tab-content-footer {
+      display: flex;
+      justify-content: flex-end;
+      position: sticky;
+      padding-right: 12px;
+      padding-top: 12px;
+      margin-bottom: 12px;
+      bottom: -1px;
+      bottom: 0;
+      z-index: 1;
+      flex-shrink: 0;
+      background-color: var(--color-sf-content-bg-color);
+      border-top: 1px solid var(--color-sf-border);
+    }
+    #visibleSign_button_signDocument {
+      width: 160px;
+    }
+    .fluent2 .e-pv-visible-sign-tab-content-footer,
+    .fluent2 .e-pv-visible-sign-tab-header {
+      background: #fff;
+    }
+    .material3 .e-pv-visible-sign-tab-content-footer,
+    .material3-dark .e-pv-visible-sign-tab-content-footer {
+      background: rgba(var(--color-sf-background));
+      border-top: 1px solid rgba(var(--color-sf-outline));
+    }
+    .fluent2-highcontrast .e-pv-visible-sign-tab-content-footer,
+    .fluent2-highcontrast .e-pv-visible-sign-tab-header {
+      background-color: #1C1B1F;
+    }
+    .e-pv-visible-sign-uploaded-images {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 15px;
+    }
+    .e-pv-visible-sign-tab-panel {
+      display: flex;
+      flex-direction: column;
+      border-left: 1px solid #D7D7D7;
+      padding: 0px !important;
+      height: 620px;
+      overflow-x: hidden;
+    }
+    .control-wrapper {
+      height: 100%;
+    }
+    .e-pv-visible-sign-tab-content {
+      flex-grow: 1;
+    }
+    .e-pv-visible-sign-header-title {
+      padding: 12px;
+    }
+    .e-pv-visible-sign-tab-header {
+      display: flex;
+      border-bottom: 1px solid var(--color-sf-border);
+      background: var(--color-sf-content-bg-color);
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+    .material3 .e-pv-visible-sign-tab-header,
+    .material3-dark .e-pv-visible-sign-tab-header {
+      background: rgba(var(--color-sf-background));
+      border-bottom: 1px solid rgba(var(--color-sf-outline));
+    }
+    .e-pv-visible-sign-tab-header-item {
+      position: relative;
+      padding: 0 15px;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      color: var(--color-sf-content-text-color-alt3);
+    }
+    .material3 .e-pv-visible-sign-tab-header-item,
+    .material3-dark .e-pv-visible-sign-tab-header-item {
+      color: rgba(var(--color-sf-on-surface-variant));
+    }
+    .e-pv-visible-sign-tab-header-item:hover {
+      color: var(--color-sf-content-text-color-hover);
+    }
+    .material3 .e-pv-visible-sign-tab-header-item:hover {
+      color: rgba(var(--color-sf-black));
+    }
+    .material3-dark .e-pv-visible-sign-tab-header-item:hover {
+      color: rgba(var(--color-sf-white));
+    }
+    .fluent2-highcontrast .e-pv-visible-sign-tab-header-item:hover {
+      color: var(--color-sf-white);
+    }
+    .e-pv-visible-sign-tab-header-item.active {
+      font-weight: 600;
+      border-bottom: 3px solid var(--color-sf-primary);
+      color: var(--color-sf-primary);
+    }
+    .e-pv-visible-sign-tab-header-item.active::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background-color: var(--color-sf-primary);
+    }
+    .material3 .e-pv-visible-sign-tab-header-item.active::after, 
+    .material3-dark .e-pv-visible-sign-tab-header-item.active::after {
+      background-color: rgba(var(--color-sf-primary));
+    }
+    .material3 .e-pv-visible-sign-tab-header-item.active,
+    .material3-dark .e-pv-visible-sign-tab-header-item.active {
+      border-bottom: 3px solid rgba(var(--color-sf-primary));
+      color: rgba(var(--color-sf-primary));
+    }
+    .e-pv-visible-sign-tab-header-item.active:hover {
+      color: var(--color-sf-primary);
+    }
+    .material3 .e-pv-visible-sign-tab-header-item.active:hover,
+    .material3-dark .e-pv-visible-sign-tab-header-item.active:hover {
+      color: rgba(var(--color-sf-primary));
+    }
+    .e-pv-visible-sign-tab-header-item-text {
+      height: 48px;
+      display: inline-flex;
+      align-items: center;
+    }
+    .e-view.e-bigger .e-pv-visible-sign-group-title,
+    .e-view.e-bigger .e-pv-visible-sign-dropdown-label {
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .e-view.e-bigger .e-pv-visible-sign-text-content,
+    .e-view.e-bigger .e-pv-visible-sign-tab-header-item-text {
+      font-size: 16px;
+    }
+    .e-pv-visible-sign-group-title,
+    .e-pv-visible-sign-dropdown-label {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .e-pv-visible-sign-text-content {
+      font-size: 14px;
+    }
+    .e-pv-visible-sign-inner-table,
+    .e-pv-visible-sign-position-table,
+    .e-pv-visible-sign-size-table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+    .e-pv-visible-sign-position-table,
+    .e-pv-visible-sign-size-table {
+      table-layout: auto;
+    }
+    .e-pv-visible-sign-inner-table td,
+    .e-pv-visible-sign-position-table td,
+    .e-pv-visible-sign-size-table td {
+      text-wrap: nowrap;
+      padding: 6px;
+    }
+    .e-pv-visible-sign-inner-table td:first-child,
+    .e-pv-visible-sign-position-table td:first-child,
+    .e-pv-visible-sign-size-table td:first-child {
+      padding-left: 0;
+    }
+    .e-pv-visible-sign-inner-table td:last-child,
+    .e-pv-visible-sign-position-table td:last-child,
+    .e-pv-visible-sign-size-table td:last-child {
+      padding-right: 0;
+    }
+    .e-pv-visible-sign-inner-table td:first-child {
+      width: 40%;
+    }
+    .e-pv-visible-sign-inner-table td:last-child {
+      width: 60%;
+    }
+    .e-pv-visible-sign-signature-image-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 40px;
+    }
+    .e-pv-visible-sign-signature-image-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .e-pv-visible-sign-image-wrapper {
+      position: relative;
+      border: 2px solid;
+      border-color: lightgray;
+      cursor: pointer;
+      height: 60px;
+      width: 60px;
+      background-color: #fff;
+    }
+    .e-pv-visible-sign-image-wrapper.selected {
+      border-color: #0078d4;
+    }
+    .e-pv-visible-sign-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .e-pv-visible-sign-image-wrapper .e-pv-visible-sign-image-delete {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+    }
+    .tailwind3-dark .e-pv-visible-sign-image-delete,
+    .tailwind3-dark .e-pv-visible-sign-image-delete:hover {
+      color: #000;
+    }
+    .e-pv-visible-sign-description-table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: auto;
+    }
+    .e-pv-visible-sign-description-table td {
+      text-wrap: nowrap;
+      padding: 8px;
+    }
+    .e-pv-visible-sign-tab-panel .e-tab .e-tab-header {
+      position: sticky;
+      z-index: 1;
+      top: 0;
+      background-color: var(--color-sf-content-bg-color);
+    }
+    .e-pv-visible-sign-pdfviewer-tab-container {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .e-pv-visible-sign-pdfviewer-tab-container .e-pv-visible-sign-toolbar,
+    .e-pv-visible-sign-pdfviewer-tab-container .e-pv-visible-sign-message {
+      flex-grow: 0;
+      flex-shrink: 0;
+      flex-basis: auto;
+    }
+    .e-pv-visible-sign-pdfviewer-tab-container .e-pv-visible-sign-pdfviewer-container {
+      flex-shrink: 1;
+      flex-grow: 1;
+      flex-basis: 0;
+    }
+
+    /* Optional: light fallback for CSS vars (keeps UI readable if vars are missing) */
+    :root {
+      --color-sf-content-bg-color: #fff;
+      --color-sf-border: #D7D7D7;
+      --color-sf-primary: #0078d4;
+      --color-sf-content-text-color-alt3: #444;
+      --color-sf-content-text-color-hover: #222;
+    }
+    body { margin: 16px; }
+  </style>
+</head>
+<body>
+  <div class="row">
+    <div class="col-12 col-lg-8 control-section" style="height: 610px">
+      <div class="e-pv-visible-sign-pdfviewer-tab-container">
+        <div class="e-pv-visible-sign-toolbar">
+          <div id="visibleSign_pdfViewer_toolbar"></div>
+        </div>
+        <div class="e-pv-visible-sign-message">
+          <div id="visibleSign_message_success"></div>
+          <div id="visibleSign_message_warning"></div>
+          <div id="visibleSign_message_error"></div>
+        </div>
+        <div class="e-pv-visible-sign-pdfviewer-container">
+          <div id="visibleSign_pdfViewer" style="height: 100%; width: 100%; background: #f7f7f7; display:flex; align-items:center; justify-content:center;">
+            <span style="color:#888"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-lg-4 e-pv-visible-sign-tab-panel">
+      <div>
+        <div class="e-pv-visible-sign-header-title">
+          <div class="e-pv-visible-sign-group-title">Signature Field</div>
+        </div>
+
+        <div class="e-pv-visible-sign-tab-header">
+          <div id="visibleSign_header_createNew" class="e-pv-visible-sign-tab-header-item active">
+            <div class="e-pv-visible-sign-tab-header-item-text">Create new</div>
+          </div>
+          <div id="visibleSign_header_existingField" class="e-pv-visible-sign-tab-header-item">
+            <div class="e-pv-visible-sign-tab-header-item-text">Existing Field</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="e-pv-visible-sign-tab">
+        <div class="e-pv-visible-sign-tab-content">
+          <div id="visibleSign_createNew_exclusive">
+            <div class="e-pv-visible-sign-group">
+              <div class="e-pv-visible-sign-group-title"><span>Position</span></div>
+              <table class="e-pv-visible-sign-position-table">
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="e-pv-visible-sign-text-content"><span>X</span>
+                        <div class="e-pv-visible-sign-input-item">
+                          <input id="visibleSign_numerictextbox_x" />
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="e-pv-visible-sign-text-content"><span>Y</span>
+                        <div class="e-pv-visible-sign-input-item">
+                          <input id="visibleSign_numerictextbox_y" />
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="e-pv-visible-sign-group" style="margin-top: 6px">
+              <div class="e-pv-visible-sign-group-title"><span>Size</span></div>
+              <table class="e-pv-visible-sign-size-table">
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="e-pv-visible-sign-text-content"><span>Width</span>
+                        <div class="e-pv-visible-sign-input-item">
+                          <input id="visibleSign_numerictextbox_width" />
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="e-pv-visible-sign-text-content"><span>Height</span>
+                        <div class="e-pv-visible-sign-input-item">
+                          <input id="visibleSign_numerictextbox_height" />
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div id="visibleSign_existingField_exclusive" hidden>
+            <div class="e-pv-visible-sign-group">
+              <table class="e-pv-visible-sign-inner-table">
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="e-pv-visible-sign-dropdown-label"><span>Existing Field</span></div>
+                    </td>
+                    <td>
+                      <div class="e-pv-visible-sign-text-content">
+                        <button id="visibleSign_dropdown_existingField">Select...</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <hr />
+
+          <div>
+            <div class="e-pv-visible-sign-signature-image-group">
+              <div class="e-pv-visible-sign-signature-image-header">
+                <input id="visibleSign_checkbox_signatureImage" type="checkbox" />
+              </div>
+              <div>
+                <div id="e-pv-visible-sign-image-uploader" style="display: none;">
+                  <input id="visibleSign_uploader" type="file" accept="image/*" multiple />
+                </div>
+                <div>
+                  <button id="visibleSign_button_addSignature" style="float:right">Add Signature</button>
+                </div>
+              </div>
+            </div>
+
+            <div id="visibleSign_uploaded_images">
+              <div class="e-pv-visible-sign-uploaded-images" id="uploadedImagesContainer">
+                <div class="e-pv-visible-sign-image-wrapper selected" data-index="0" title="Signature 1">
+                  <img alt="Signature 1" src="https://via.placeholder.com/60x60?text=Sig" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr />
+
+          <div class="e-pv-visible-sign-group">
+            <div class="e-pv-visible-sign-group-title" style="margin-bottom: 6px;"><span>Signature Description</span></div>
+            <table class="e-pv-visible-sign-inner-table">
+              <tbody>
+                <tr>
+                  <td>
+                    <input id="visibleSign_checkbox_signer" type="checkbox" />
+                  </td>
+                  <td>
+                    <input id="visibleSign_textbox_signer" placeholder="Signer" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input id="visibleSign_checkbox_reason" type="checkbox" />
+                  </td>
+                  <td>
+                    <input id="visibleSign_textbox_reason" placeholder="Reason" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input id="visibleSign_checkbox_location" type="checkbox" />
+                  </td>
+                  <td>
+                    <input id="visibleSign_textbox_location" placeholder="Location" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input id="visibleSign_checkbox_date" type="checkbox" />
+                  </td>
+                  <td>
+                    <input id="visibleSign_datepicker" type="date" />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <hr />
+
+          <div class="e-pv-visible-sign-group">
+            <table class="e-pv-visible-sign-inner-table">
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="e-pv-visible-sign-dropdown-label"><span>Display mode</span></div>
+                  </td>
+                  <td>
+                    <button id="visibleSign_dropdown_displayMode">Appearance</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="e-pv-visible-sign-dropdown-label"><span>Signature Type</span></div>
+                  </td>
+                  <td>
+                    <button id="visibleSign_dropdown_signatureType">Digital</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="e-pv-visible-sign-dropdown-label"><span>Digest Algorithm</span></div>
+                  </td>
+                  <td>
+                    <button id="visibleSign_dropdown_digestAlgorithm">SHA256</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="e-pv-visible-sign-tab-content-footer">
+        <button id="visibleSign_button_signDocument">Sign Document</button>
+      </div>
+    </div>
+  </div>
+ <script src="./app.js"></script>
+</body>
+</html>
