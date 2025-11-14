@@ -9,6 +9,8 @@
         <div id="container">
             <button id="exportJson">Export JSON</button>
 <button id="importJson">Import JSON</button>
+           <button id="exportXFDF">Export XFDF</button>
+<button id="importXFDF">Import XFDF</button>
             <div id="PdfViewer" style="height:900px;width:100%;"></div>
        </div>
        <script>                
@@ -26,12 +28,27 @@ document.getElementById('exportJson').addEventListener('click', ()=> {
 });
 
 // Event triggers on Import JSON button click.
-
   document.getElementById('importJson').addEventListener('click', () => {
             fetch('resources/form-designer.json')
                 .then(response => response.text())
                 .then(data => {
                     pdfviewer.importFormFields(data, 'Json');
+
+                })
+        });
+             // Event triggers on Export XFDF button click.
+        document.getElementById('exportXFDF').addEventListener('click', ()=> {
+    // Data must be the desired path for the exported document.
+    pdfviewer.exportFormFields('Data', 'Xfdf');
+});
+
+// Event triggers on Import XFDF button click.
+
+  document.getElementById('importXFDF').addEventListener('click', () => {
+            fetch('resources/form-designer.xfdf')
+                .then(response => response.text())
+                .then(data => {
+                    pdfviewer.importFormFields(data, 'Xfdf');
 
                 })
         });
