@@ -18,7 +18,7 @@ ej.pdfviewer.PdfViewer.Inject(ej.pdfviewer.TextSelection, ej.pdfviewer.TextSearc
   var array = viewer.extractPages("1,2");
 
   // Load the extracted pages back into the viewer
-  viewer.load(array);
+  viewer.load(array,'');
 
   // Inspect the result if needed
   console.log(array);
