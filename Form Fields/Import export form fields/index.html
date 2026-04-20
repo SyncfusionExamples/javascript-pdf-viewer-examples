@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+        <link href="resources/styles/material.min.css" rel="stylesheet">    
+        <script src="resources/Scripts/ej2.min.js" type="text/javascript"></script>
+        </head>
+    <body>
+        <h2>Syncfusion JavaScript (ES5) PDF Viewer Control</h2>
+        <div id="container">
+            <button id="exportJson">Export JSON</button>
+<button id="importJson">Import JSON</button>
+           <button id="exportXFDF">Export XFDF</button>
+<button id="importXFDF">Import XFDF</button>
+            <div id="PdfViewer" style="height:900px;width:100%;"></div>
+       </div>
+       <script>                
+            //Initialize PDF Viewer component
+            var pdfviewer = new ej.pdfviewer.PdfViewer({
+                documentPath:window.location.origin +'/resources/form-designer.pdf',
+                resourceUrl:window.location.origin +'/resources/ej2-pdfviewer-lib'
+            });
+            ej.pdfviewer.PdfViewer.Inject(ej.pdfviewer.TextSelection, ej.pdfviewer.TextSearch, ej.pdfviewer.Print, ej.pdfviewer.Navigation, ej.pdfviewer.Toolbar,ej.pdfviewer.Magnification, ej.pdfviewer.Annotation, ej.pdfviewer.FormDesigner, ej.pdfviewer.FormFields, ej.pdfviewer.PageOrganizer);
+            
+            // Event triggers on Export JSON button click.
+document.getElementById('exportJson').addEventListener('click', ()=> {
+    // Data must be the desired path for the exported document.
+    pdfviewer.exportFormFields('Data', 'Json');
+});
+
+// Event triggers on Import JSON button click.
+  document.getElementById('importJson').addEventListener('click', () => {
+            fetch('resources/form-designer.json')
+                .then(response => response.text())
+                .then(data => {
+                    pdfviewer.importFormFields(data, 'Json');
+
+                })
+        });
+             // Event triggers on Export XFDF button click.
+        document.getElementById('exportXFDF').addEventListener('click', ()=> {
+    // Data must be the desired path for the exported document.
+    pdfviewer.exportFormFields('Data', 'Xfdf');
+});
+
+// Event triggers on Import XFDF button click.
+
+  document.getElementById('importXFDF').addEventListener('click', () => {
+            fetch('resources/form-designer.xfdf')
+                .then(response => response.text())
+                .then(data => {
+                    pdfviewer.importFormFields(data, 'Xfdf');
+
+                })
+        });
+        //PDF Viewer control rendering starts
+            pdfviewer.appendTo('#PdfViewer');
+       </script>       
+      <script>
+         var ele = document.getElementById('container');
+         if(ele) {
+             ele.style.visibility = "visible";
+         }   
+     </script>
+    </body>
+</html>
