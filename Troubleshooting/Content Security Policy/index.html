@@ -4,35 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Essential JS 2</title>
-    
-    <!-- meta tag for Content-Security-Policy -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://cdn.syncfusion.com;
-    script-src 'self' https://cdn.syncfusion.com 'unsafe-inline' 'unsafe-eval' blob:;
-    font-src 'self' https://fonts.googleapis.com/ https://fonts.gstatic.com/ data: cdn.syncfusion.com 'unsafe-inline';
-    style-src 'self' https://cdn.syncfusion.com https://fonts.googleapis.com 'unsafe-inline';
-    img-src 'self' data:"/>
+
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self';
+    script-src 'self' https://cdn.syncfusion.com/ 'wasm-unsafe-eval' blob:;
+    worker-src 'self' blob:;
+    connect-src 'self' https://cdn.syncfusion.com/ data:;
+    style-src 'self' https://cdn.syncfusion.com/ https://fonts.googleapis.com/ blob:;
+    font-src 'self' data: https://fonts.googleapis.com/ https://fonts.gstatic.com/;
+    img-src 'self' data: blob:;" />
 
     <!-- Essential JS 2 material theme -->
-    <link href="https://cdn.syncfusion.com/ej2/24.1.41/material.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.syncfusion.com/ej2/29.2.8/material.css" rel="stylesheet" type="text/css" />
     <!-- Essential JS 2 script reference -->
-    <script src="https://cdn.syncfusion.com/ej2/24.1.41/dist/ej2.min.js" type="text/javascript"></script>
-    <script src="https://cdn.syncfusion.com/ej2/syncfusion-helper.js" type ="text/javascript"></script>
+    <script src="https://cdn.syncfusion.com/ej2/29.2.8/dist/ej2.min.js" type="text/javascript"></script>
+    <script src="https://cdn.syncfusion.com/ej2/syncfusion-helper.js" type="text/javascript"></script>
+
 </head>
-    <body>
-         <!--element which is going to render-->
-        <div id="container">
-            <div id="PdfViewer" style="height:580px;width:100%;"></div>
-        </div>
-        <script>                
-            //Initialize PDF Viewer component
-            var pdfviewer = new ej.pdfviewer.PdfViewer({
-                documentPath: "https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf",
-                resourceUrl:"https://cdn.syncfusion.com/ej2/24.1.41/dist/ej2-pdfviewer-lib",
-                // To utilize the server-backed PDF Viewer, need to specify the service URL. This can be done by including the serviceUrl: 'https://services.syncfusion.com/js/production/api/pdfviewer'
-            });
-            ej.pdfviewer.PdfViewer.Inject(ej.pdfviewer.TextSelection, ej.pdfviewer.TextSearch, ej.pdfviewer.Print, ej.pdfviewer.Navigation, ej.pdfviewer.Toolbar,
-                                          ej.pdfviewer.Magnification, ej.pdfviewer.Annotation, ej.pdfviewer.FormDesigner, ej.pdfviewer.FormFields);
-            //PDF Viewer control rendering starts
-            pdfviewer.appendTo('#PdfViewer');
-        </script>       	
-</body></html>
+<body>
+    <!-- Element which is going to render the PDF Viewer -->
+    <div id="container">
+        <div id="PdfViewer"></div>
+    </div>
+
+    <!-- External JS File -->
+    <script src="index.js"></script>
+</body>
+</html>
