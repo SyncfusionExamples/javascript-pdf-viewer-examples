@@ -1,11 +1,11 @@
 var pdfviewer = new ej.pdfviewer.PdfViewer({
-  documentPath: 'blank.pdf',
+  documentPath: window.location.origin + '/blank.pdf',
   resourceUrl: "https://cdn.syncfusion.com/ej2/35.1.41/dist/ej2-pdfviewer-lib",
 });
 ej.pdfviewer.PdfViewer.Inject(ej.pdfviewer.Toolbar, ej.pdfviewer.Magnification, ej.pdfviewer.Navigation, ej.pdfviewer.Annotation,
-ej.pdfviewer.LinkAnnotation, ej.pdfviewer.BookmarkView, ej.pdfviewer.ThumbnailView, ej.pdfviewer.Print,
-ej.pdfviewer.TextSelection, ej.pdfviewer.TextSearch, ej.pdfviewer.FormFields, ej.pdfviewer.FormDesigner,
-ej.pdfviewer.PageOrganizer);
+  ej.pdfviewer.LinkAnnotation, ej.pdfviewer.BookmarkView, ej.pdfviewer.ThumbnailView, ej.pdfviewer.Print,
+  ej.pdfviewer.TextSelection, ej.pdfviewer.TextSearch, ej.pdfviewer.FormFields, ej.pdfviewer.FormDesigner,
+  ej.pdfviewer.PageOrganizer);
 
 // Default border styles applied to the annotations created with the annotation modes.
 pdfviewer.rectangleSettings = {

@@ -1,25 +1,20 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
     <title>EJ2 PDF Viewer</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Typescript PDF Viewer Control">
     <meta name="author" content="Syncfusion">
-    <link href="https://cdn.syncfusion.com/ej2/35.1.41/ej2-base/styles/material.css" rel="stylesheet">    
-    <link href="https://cdn.syncfusion.com/ej2/35.1.41/ej2-pdfviewer/styles/material.css" rel="stylesheet">
-    <link href="https://cdn.syncfusion.com/ej2/35.1.41/ej2-buttons/styles/material.css" rel="stylesheet">
-    <link href="https://cdn.syncfusion.com/ej2/35.1.41/ej2-popups/styles/material.css" rel="stylesheet">
-    <link href="https://cdn.syncfusion.com/ej2/35.1.41/ej2-navigations/styles/material.css" rel="stylesheet">
-    <link href="https://cdn.syncfusion.com/ej2/35.1.41/ej2-dropdowns/styles/material.css" rel="stylesheet">
-    <link href="https://cdn.syncfusion.com/ej2/35.1.41/ej2-lists/styles/material.css" rel="stylesheet">
-    <link href="https://cdn.syncfusion.com/ej2/35.1.41/ej2-inputs/styles/material.css" rel="stylesheet">    
-    <link href="https://cdn.syncfusion.com/ej2/35.1.41/ej2-splitbuttons/styles/material.css" rel="stylesheet">
-    <link href="https://cdn.syncfusion.com/ej2/35.1.41/ej2-notifications/styles/material.css" rel="stylesheet">
-    
+    <link href="https://cdn.syncfusion.com/ej2/35.1.41/tailwind3.css" rel="stylesheet">
+
     <!-- Essential JS 2 PDF Viewer's script -->
     <script src="https://cdn.syncfusion.com/ej2/35.1.41/dist/ej2.min.js" type="text/javascript"></script>
-    <script src="https://cdn.syncfusion.com/ej2/syncfusion-helper.js" type ="text/javascript"></script>
-    
+    <script src="https://cdn.syncfusion.com/ej2/syncfusion-helper.js" type="text/javascript"></script>
+
 </head>
+
 <body>
     <div id="container">
         <div class="action-group">
@@ -54,55 +49,57 @@
             <button id="ResetBorder">Reset To Solid</button>
         </div>
 
-        <div id="PdfViewer" style="height:650px;width:100%;"></div>        
+        <div id="PdfViewer" style="height:650px;width:100%;"></div>
     </div>
 
-<style>
-    .action-group {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 8px;
-        padding: 10px 12px;
-        margin-bottom: 12px;
-        border: 1px solid #e0e0e0;
-        border-radius: 6px;
-    }
+    <style>
+        .action-group {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px;
+            margin-bottom: 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+        }
 
-    .action-group h4 {
-        width: 100%;
-        margin: 0 0 4px;
-        font-size: 13px;
-        font-weight: 600;
-        color: #424242;
-    }
+        .action-group h4 {
+            width: 100%;
+            margin: 0 0 4px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #424242;
+        }
 
-    .action-group button {
-        padding: 6px 12px;
-        font-size: 13px;
-        color: #1b1b1b;
-        background: #ffffff;
-        border: 1px solid #bdbdbd;
-        border-radius: 4px;
-        cursor: pointer;
-    }
+        .action-group button {
+            padding: 6px 12px;
+            font-size: 13px;
+            color: #1b1b1b;
+            background: #ffffff;
+            border: 1px solid #bdbdbd;
+            border-radius: 4px;
+            cursor: pointer;
+        }
 
-    .action-group button:hover {
-        background: #f5f5f5;
-        border-color: #1976d2;
-    }
+        .action-group button:hover {
+            background: #f5f5f5;
+            border-color: #1976d2;
+        }
 
-    .action-group button:focus-visible {
-        outline: 2px solid #1976d2;
-        outline-offset: 1px;
-    }
-</style>
+        .action-group button:focus-visible {
+            outline: 2px solid #1976d2;
+            outline-offset: 1px;
+        }
+    </style>
 
-<script>
-    var ele = document.getElementById('container');
-    if(ele) {
-      ele.style.visibility = "visible";
-    }   
-</script>
-<script src="index.js" type="text/javascript"></script>
-</body></html>
+    <script>
+        var ele = document.getElementById('container');
+        if (ele) {
+            ele.style.visibility = "visible";
+        }   
+    </script>
+    <script src="index.js" type="text/javascript"></script>
+</body>
+
+</html>
