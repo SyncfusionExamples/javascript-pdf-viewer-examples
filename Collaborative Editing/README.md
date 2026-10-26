@@ -120,14 +120,13 @@ In a second terminal:
 
 ```bash
 cd Client
-npm install
-npm run dev
+npx serve .
 ```
 
-Vite will display the local client URL, normally similar to:
+The client will be served locally. The URL will be similar to:
 
 ```text
-http://localhost:5173
+http://localhost:3000 (or another available port)
 ```
 
 Open that URL in a browser.
@@ -135,21 +134,21 @@ Open that URL in a browser.
 ## Test Collaborative Editing
 
 1. Open the client in the first browser tab.
-2. Confirm that the PDF Viewer toolbar includes the user/collaboration icon.
+2. Confirm that the PDF Viewer toolbar loads and the collaboration status bar displays user information.
 3. Copy the room ID from the browser URL or from the collaboration status bar. The room ID is the `id` query parameter, for example:
 
    ```text
-   http://localhost:5173/?id=3tlfqgkp854
+   http://localhost:3000/?id=3tlfqgkp854
    ```
 
 4. Open the client in another browser tab or window.
 5. Replace its URL with the same room ID, for example:
 
    ```text
-   http://localhost:5173/?id=3tlfqgkp854
+   http://localhost:3000/?id=3tlfqgkp854
    ```
 
-6. Confirm that both users show the same room ID in the app bar.
+6. Confirm that both users show the same room ID in the collaboration status bar and are listed under "Connected Users".
 7. Make changes from either session and verify that the other session receives them. Test annotations, form fields, and Page Organizer actions.
 
 If no `id` is provided, the client generates a new room ID. Share the generated URL with other collaborators so that everyone joins the same room.
