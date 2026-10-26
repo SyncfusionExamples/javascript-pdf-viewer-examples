@@ -1,0 +1,17 @@
+2026-09-25T11:39:02.572Z - Application startup initiated
+2026-09-25T11:39:12.400Z - Collaboration Server package loaded successfully
+2026-09-25T11:39:14.479Z - PDF Viewer Collaboration Adapter loaded successfully
+2026-09-25T11:39:14.507Z - Collaborative Editing Controller loaded successfully
+2026-09-25T11:39:14.531Z - PDF Storage Service loaded successfully
+2026-09-25T11:39:14.622Z - CORS package loaded successfully
+2026-09-25T11:39:14.624Z - PDF Storage Service initialized successfully
+2026-09-25T11:39:14.626Z - PDF Viewer Collaboration Adapter initialized successfully
+2026-09-25T11:39:14.627Z - Application configured to use port: 8081
+2026-09-25T11:39:14.633Z - Collaboration Server instance created successfully
+2026-09-25T11:39:14.634Z - Transport service attached to adapter
+2026-09-25T11:39:14.635Z - Base path configured as: /web-services/pdf-viewer/collaboration-server
+2026-09-25T11:39:14.637Z - Collaboration routes registered successfully
+2026-09-25T11:39:14.639Z - PDF document routes registered successfully
+2026-09-25T11:39:14.640Z - Health check endpoint registered successfully
+2026-09-25T11:39:14.641Z - Starting Collaboration Server
+2026-09-25T11:39:14.649Z - Collaboration Server started successfully and is ready to accept requests
