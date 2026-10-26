@@ -4,7 +4,8 @@
 
 const userList = ['RIO', 'JOHN', 'MAXY', 'SHAI', 'SRI'];
 const currentUserName = userList[Math.floor(Math.random() * userList.length)];
-const SERVICE_URL = 'http://localhost:8081/';
+//REPLACE THIS WITH SERVICE URL CURRENTLY RUNNING
+const SERVICE_URL = 'https://localhost:5001/';
 
 // ============================================================
 // State Management
@@ -211,7 +212,10 @@ async function handleResourcesLoaded() {
                     // Step 2: Create and configure CollaborationClient
                     const client = new ej.collaborator.CollaborationClient(adapter, {
                         serviceUrl: SERVICE_URL,
-                        connectionType: 'websocket',
+                        // USE BELOW IF YOU USE NODE JS WEB SERVICE
+                        // connectionType: 'websocket',
+                        // USE BELOW IF YOU USE CORE WEB SERVICE
+                        connectionType: 'signalr',
                         currentUser: appState.currentUser,
                         onRemoteAction: (action, data) => {
                             console.log('[App] Applying remote action:', action);
@@ -271,6 +275,10 @@ async function handleResourcesLoaded() {
             updateStatusBar();
         }
     }
+}
+
+function handleDocumentLoaded() {
+    appState.adapter.updatePendingOperations();
 }
 
 /**
@@ -421,7 +429,8 @@ document.addEventListener('DOMContentLoaded', function () {
         enableCollaborativeEditing: true,
         resourceUrl: 'https://cdn.syncfusion.com/ej2/34.1.29/dist/ej2-pdfviewer-lib',
         resourcesLoaded: handleResourcesLoaded,
-        documentChanged: handleDocumentChanged
+        documentChanged: handleDocumentChanged,
+        documentLoad: handleDocumentLoaded
     });
 
     // Inject required services
