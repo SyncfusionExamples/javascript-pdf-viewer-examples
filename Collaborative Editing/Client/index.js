@@ -277,6 +277,10 @@ async function handleResourcesLoaded() {
     }
 }
 
+function handleDocumentLoaded() {
+    appState.adapter.updatePendingOperations();
+}
+
 /**
  * Handler for viewer.documentChanged event
  * 
@@ -425,7 +429,8 @@ document.addEventListener('DOMContentLoaded', function () {
         enableCollaborativeEditing: true,
         resourceUrl: 'https://cdn.syncfusion.com/ej2/34.1.29/dist/ej2-pdfviewer-lib',
         resourcesLoaded: handleResourcesLoaded,
-        documentChanged: handleDocumentChanged
+        documentChanged: handleDocumentChanged,
+        documentLoad: handleDocumentLoaded
     });
 
     // Inject required services
