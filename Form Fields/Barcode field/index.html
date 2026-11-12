@@ -3,14 +3,14 @@
 
 <head>
     <title>EJ2 PDF Viewer - Barcode field</title>
-    <meta charset="utf-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="JavaScript PDF Viewer Control">
     <meta name="author" content="Syncfusion">
-    <link href="https://cdn.syncfusion.com/ej2/35.1.43/tailwind3.css" rel="stylesheet">
+    <link href="https://cdn.syncfusion.com/ej2/35.1.46/tailwind3.css" rel="stylesheet">
 
     <!-- Essential JS 2 PDF Viewer's script -->
-    <script src="https://cdn.syncfusion.com/ej2/35.1.43/dist/ej2.min.js" type="text/javascript"></script>
+    <script src="https://cdn.syncfusion.com/ej2/35.1.46/dist/ej2.min.js" type="text/javascript"></script>
     <script src="https://cdn.syncfusion.com/ej2/syncfusion-helper.js" type="text/javascript"></script>
 
     <style>
@@ -71,35 +71,45 @@
 </head>
 
 <body>
-    <div id="container">
-        <div class="barcode-toolbar">
-            <h4>Add barcode field programmatically</h4>
-            <button id="addPdf417Barcode">Add PDF417</button>
-            <button id="addQrCodeBarcode">Add QR Code</button>
-            <button id="addDataMatrixBarcode">Add Data Matrix</button>
-            <button id="enableBarcodeMode">Set Barcode Field Mode</button>
+    <div class="toolbar-actions">
+        <div class="action-group">
+            <h4>Add Barcode Field Programmatically</h4>
+            <button onclick="addBarcodeField('PDF417')">
+                Add PDF417
+            </button>
+            <button onclick="addBarcodeField('QRCode')">
+                Add QR Code
+            </button>
+            <button onclick="addBarcodeField('DataMatrix')">
+                Add Data Matrix
+            </button>
+            <button onclick="enableBarcodeMode()">
+                Set Barcode Field Mode
+            </button>
         </div>
-
-        <div class="barcode-toolbar">
-            <h4>Edit barcode field</h4>
-            <select id="selectedField">
-                <option value="">No barcode field</option>
+        <div class="action-group">
+            <h4>Edit Barcode Field</h4>
+            <label>
+                Field
+            </label>
+            <select id="barcodeFields">
+                <option value="">No Barcode Field</option>
             </select>
-            <button id="updateSymbologyPdf417" disabled>Set PDF417</button>
-            <button id="updateSymbologyQrCode" disabled>Set QR Code</button>
-            <button id="updateSymbologyDataMatrix" disabled>Set Data Matrix</button>
-            <button id="deleteSelectedField" disabled>Delete Field</button>
+            <button onclick="updateSymbology('PDF417')">
+                Set PDF417
+            </button>
+            <button onclick="updateSymbology('QRCode')">
+                Set QR Code
+            </button>
+            <button onclick="updateSymbology('DataMatrix')">
+                Set Data Matrix
+            </button>
+            <button onclick="deleteSelectedField()">
+                Delete Field
+            </button>
         </div>
-
-        <div id="PdfViewer" style="height:680px;width:100%;"></div>
     </div>
-
-    <script>
-        var ele = document.getElementById('container');
-        if (ele) {
-            ele.style.visibility = "visible";
-        }
-    </script>
+    <div id="PdfViewer"></div>
     <script src="index.js" type="text/javascript"></script>
 </body>
 
