@@ -1,61 +1,122 @@
 # Barcode Form Field in JavaScript PDF Viewer
 
-This sample demonstrates the **barcode form field** in the Syncfusion JavaScript PDF Viewer. It shows how to add barcode fields programmatically, how to place a barcode field interactively, how to change the barcode type (symbology) of an existing field, and how to remove a barcode field.
+This sample demonstrates the **Barcode Form Field** support in the Syncfusion JavaScript PDF Viewer. It shows how to add barcode fields programmatically, place barcode fields interactively using Form Designer mode, modify the barcode symbology of existing fields, and remove barcode fields from the document.
 
 ## What is covered
 
-- **Add a barcode field programmatically** with `barcodeSample.addBarcodeField('QRCode', ...)`.
-- **Place a barcode field interactively** by switching the viewer into the barcode placement mode and clicking on the page.
-- **Change the barcode type** of an existing field — PDF417, QR Code and Data Matrix are supported.
-- **Delete a barcode field** with `barcodeSample.deleteSelectedField()`.
+- **Add barcode fields programmatically** using the `addFormField` API.
+- **Place barcode fields interactively** using the Form Designer barcode mode.
+- **Retrieve and manage barcode fields** through the `formFieldCollections` property.
+- **Change the barcode symbology** of an existing barcode field.
+- **Delete barcode fields** using the `deleteFormField` API.
+- **Automatically refresh the barcode field collection** when fields are added or removed.
 
 ## Supported barcode types
 
 | Symbology | Description |
-|---|---|
-| `PDF417` | The default symbology of a new barcode field. |
-| `QRCode` | Recommended for links and short payloads. |
-| `DataMatrix` | A dense symbology for short alphanumeric payloads. |
+| --- | --- |
+| PDF417 | A stacked linear barcode suitable for storing large amounts of data. |
+| QRCode | A two\-dimensional barcode commonly used for URLs and compact data storage. |
+| DataMatrix | A high\-density two\-dimensional barcode optimized for compact data encoding. |
 
 ## Add a barcode field programmatically
 
-```javascript
-barcodeSample.addBarcodeField('QRCode', {
-    X: 100, Y: 150, Width: 200, Height: 80
-}, 1);
+Use the Form Designer's `addFormField` API to create a barcode field.
+
+```Javascript
+pdfviewer.formDesignerModule.addFormField('Barcode', {
+    name: 'Barcode1',
+    bounds: {
+        X: 100,
+        Y: 150,
+        Width: 200,
+        Height: 80
+    },
+    pageNumber: 1,
+    symbology: 'QRCode'
+});
 ```
 
 ## Place a barcode field interactively
 
-```javascript
-// Switches the viewer into the barcode placement mode.
-// The next click on a page places the barcode field at the clicked position.
-barcodeSample.pdfviewer.designerMode = true;
+Switch the PDF Viewer to Barcode Form Designer mode and click on a page to place the barcode field.
+
+```Javascript
+pdfviewer.formDesignerModule.setFormFieldMode('Barcode');
 ```
 
-## Change the barcode type of an existing field
+## Retrieve barcode fields
 
-```javascript
-barcodeSample.updateSymbology('DataMatrix');
+Barcode fields can be accessed through the `formFieldCollections` property.
+
+```Javascript
+var fields = pdfviewer.formFieldCollections;
+
+for (var i = 0; i < fields.length; i++) {
+    if (fields[i].type === 'Barcode') {
+        console.log(fields[i]);
+    }
+}
 ```
+
+## Change the barcode symbology
+
+Update the symbology of an existing barcode field using the `updateFormField` API.
+
+```Javascript
+pdfviewer.formDesignerModule.updateFormField(field, {
+    symbology: 'DataMatrix'
+});
+```
+
+Supported symbology values:
+
+- `PDF417`
+- `QRCode`
+- `DataMatrix`
 
 ## Remove a barcode field
 
-```javascript
-barcodeSample.deleteSelectedField();
+Delete an existing barcode field using the `deleteFormField` API.
+
+```Javascript
+pdfviewer.formDesignerModule.deleteFormField(field);
+```
+
+## Refresh the barcode field list
+
+The sample keeps the barcode field dropdown synchronized with the document by refreshing it during document load and whenever a form field is added or removed.
+
+```Javascript
+var pdfviewer = new ej.pdfviewer.PdfViewer({
+    documentLoad: function () {
+        refreshBarcodeFields();
+    },
+
+    formFieldAdd: function () {
+        refreshBarcodeFields();
+    },
+
+    formFieldRemove: function () {
+        refreshBarcodeFields();
+    }
+});
 ```
 
 ## Sample structure
 
-The barcode field type is not exposed by the PDF Viewer form designer yet, so the sample adds a small custom layer on top of the viewer:
+The sample uses the built\-in Barcode Form Field support provided by the PDF Viewer Form Designer APIs:
 
-- the barcode is rendered into the text layer of the page with the Syncfusion Barcode Generator controls,
-- the payload is encoded with `ej.pdf.PdfBarcodeField`, the same PDF specification implementation that the viewer uses internally,
-- the placed fields are tracked in a collection so that they can be updated or deleted.
-
-The sample requires EJ2 `35.1.43` or later, which is the first release that exposes the barcode form field support in the underlying PDF library.
+- Barcode fields are created using the `addFormField('Barcode', ...)` API.
+- Interactive placement is enabled through `setFormFieldMode('Barcode')`.
+- Existing barcode fields are retrieved from `formFieldCollections`.
+- Barcode properties are modified using `updateFormField`.
+- Barcode fields are removed using `deleteFormField`.
+- A custom dropdown UI is used to select and manage barcode fields within the document.
 
 ## Learn more
 
-- [Create Form Fields in JavaScript PDF Viewer UG](https://help.syncfusion.com/document-processing/pdf/pdf-viewer/javascript-es5/forms/overview/)
-- [Form Designer overview](https://ej2.syncfusion.com/javascript/documentation/api/pdfviewer/formdesigner)
+- [https://help.syncfusion.com/document\-processing/pdf/pdf\-viewer/javascript\-es5/forms/overview/](https://help.syncfusion.com/document-processing/pdf/pdf-viewer/javascript-es5/forms/overview/)
+- [https://ej2.syncfusion.com/javascript/documentation/api/pdfviewer/](https://ej2.syncfusion.com/javascript/documentation/api/pdfviewer/)
+- [https://ej2.syncfusion.com/javascript/documentation/pdfviewer/form\-designer/](https://ej2.syncfusion.com/javascript/documentation/pdfviewer/form-designer/)
+
