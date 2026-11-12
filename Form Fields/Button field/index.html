@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>EJ2 PDF Viewer - Button field</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="JavaScript PDF Viewer Control">
+    <meta name="author" content="Syncfusion">
+    <link href="https://cdn.syncfusion.com/ej2/35.1.46/tailwind3.css" rel="stylesheet">
+
+    <!-- Essential JS 2 PDF Viewer's script -->
+    <script src="https://cdn.syncfusion.com/ej2/35.1.46/dist/ej2.min.js" type="text/javascript"></script>
+    <script src="https://cdn.syncfusion.com/ej2/syncfusion-helper.js" type="text/javascript"></script>
+
+    <style>
+        .pdf-viewer-container {
+            padding: 16px;
+        }
+
+        .control-panel {
+            margin-bottom: 16px;
+            padding: 16px;
+            border: 1px solid #dcdcdc;
+            border-radius: 8px;
+            background: #fafafa;
+        }
+
+        .control-panel h3 {
+            margin-top: 0;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .field-dropdown {
+            width: 320px;
+            padding: 8px;
+            margin-top: 8px;
+        }
+
+        .primary-btn,
+        .secondary-btn,
+        .danger-btn {
+            padding: 8px 14px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .primary-btn {
+            background: #0d6efd;
+            color: white;
+        }
+
+        .secondary-btn {
+            background: #6c757d;
+            color: white;
+        }
+
+        .danger-btn {
+            background: #dc3545;
+            color: white;
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="toolbar-actions">
+        <div class="action-group">
+            <h4>Add Button Field Programmatically</h4>
+
+            <button onclick="addButtonField()">
+                Add Button Field
+            </button>
+
+            <button onclick="enableButtonMode()">
+                Enable Button Designer Mode
+            </button>
+        </div>
+
+        <div class="action-group">
+            <h4>Edit Button Field</h4>
+
+            <label>
+                Field
+            </label>
+
+            <select id="buttonFields">
+                <option value="">No Button Field</option>
+            </select>
+
+            <button onclick="editButtonField()">
+                Edit Button Field
+            </button>
+
+            <button onclick="deleteSelectedField()">
+                Delete Field
+            </button>
+        </div>
+    </div>
+
+    <div id="PdfViewer"></div>
+    <script src="index.js" type="text/javascript"></script>
+</body>
+
+</html>
