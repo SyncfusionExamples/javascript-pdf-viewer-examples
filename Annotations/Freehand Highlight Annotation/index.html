@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>EJ2 PDF Viewer</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Typescript PDF Viewer Control">
+    <meta name="author" content="Syncfusion">
+    <link href="https://cdn.syncfusion.com/ej2/35.1.46/tailwind3.css" rel="stylesheet">
+
+    <!-- Essential JS 2 PDF Viewer's script -->
+    <script src="https://cdn.syncfusion.com/ej2/35.1.46/dist/ej2.min.js" type="text/javascript"></script>
+    <script src="https://cdn.syncfusion.com/ej2/syncfusion-helper.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+    <div id="container">
+        <button id="ToggleFreehandHighlight">Toggle Freehand Highlight</button>
+        <button id="AddFreehandHighlightProgrammatically">Add Annotation</button>
+        <button id="DeleteFreehandHighlight">Delete Annotation</button>
+
+        <div id="PdfViewer" style="height:640px;width:100%;"></div>
+    </div>
+
+    <script>
+        var ele = document.getElementById('container');
+        if (ele) {
+            ele.style.visibility = "visible";
+        }   
+    </script>
+    <script src="index.js" type="text/javascript"></script>
+</body>
+
+</html>
